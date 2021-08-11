@@ -28,6 +28,8 @@
             <form action="{% url 'update_commentI' post.id comment.id%}" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
                 <p>내용 : <textarea type="text" name="content" id="" cols="30" rows="10">{{comment.content}}</textarea></p>
+                <!-- 댓글 사진 업로드하는 기능추가하기 -->
+                
                 <button type="submit">제출</button>
             </form>
         </div>

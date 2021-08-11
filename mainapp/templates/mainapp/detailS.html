@@ -22,7 +22,8 @@
           <h2 class="mb-3">{{post.title}}</h2>
             {% if post.image %}
                 <p><img src="{{ post.image.url }}" alt="사진" class="img-fluid"></p>
-            {% else %}
+                
+                {% else %}
                 <p>첨부파일이 없습니다.</p>
             {% endif %}
             <h3>이야기의 시작</h3>
@@ -39,7 +40,7 @@
                   <h3>작성자 : {{comment.writer}}</h3>
                   <div class="meta">{{comment.created_at}}</div>
                   <p>{{comment.content}}</p><br>
-                  <!-- 댓글수정은 댓글 작성자만, 댓글삭제는 댓글작성자와 게시물작성가 할 수 있도록! -->
+                  <!-- 댓글수정은 댓글 작성자만, 댓글삭제는 댓글작성자와 게시물작성자가 할 수 있도록! -->
                   {% if user == comment.writer %}
                   <p><button type="button" class="btn btn-outline-info"><a href="{% url 'edit_commentS' post.id comment.id %}">수정하기</a></button></p>
                   {% endif %}

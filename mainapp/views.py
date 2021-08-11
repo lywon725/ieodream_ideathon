@@ -2,6 +2,8 @@ from django.http import request
 from django.shortcuts import render,get_object_or_404, redirect
 from .models import CommentI, CommentM, PostS, PostD, CommentS, PostI, PostM
 from django.utils import timezone
+##여원 수정
+import os
 
 # Create your views here.
 def index(request):
@@ -66,15 +68,21 @@ def editS(request,id):
     return render(request, 'mainapp/editS.html', {'post' : edit_post})
 
 def updateS(request,id):
+    print(request.FILES)
     update_post = PostS.objects.get(id = id)
     update_post.title = request.POST['title']
     update_post.writer = request.user
     update_post.pub_date = timezone.now()
     update_post.body = request.POST['body']
+    
     if request.FILES.get('image'):
         update_post.image = request.FILES.get('image')
+        print(request.FILES.get('image')) 
     update_post.save()
     return redirect('detailS',update_post.id)
+
+
+    
 
 def deleteS(request, id):
     delete_post = PostS.objects.get(id = id)
@@ -253,7 +261,7 @@ def delete_commentM(request, post_id, comment_id):
     comment.delete()
     return redirect('detailM', post.pk)
 
-#dreamrelay_story end
+#dreamrelay_music end
 
 def moana(request):
     return render(request, 'mainapp/moana.html')
